@@ -21,12 +21,12 @@ namespace CodeTalkAPI.Controllers
             _context = context;
         }
 
-        [HttpGet ("{options:int}", Name = "Get")]
-        public ActionResult<object> Get(int option)
-        {
-            var defaultObject = _context.DefaultSnippets.Find(option);
-            return defaultObject;
-        }
+        //[HttpGet ("{options:int}", Name = "Get")]
+        //public ActionResult<object> Get(int Id)
+        //{
+        //    var defaultObject = _context.DefaultSnippets.Find(Id);
+        //    return defaultObject;
+        //}
 
         [HttpGet]
         public ActionResult<string> Get()
