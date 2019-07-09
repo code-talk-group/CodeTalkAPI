@@ -10,11 +10,11 @@ namespace CodeTalkAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CodeTalkController : ControllerBase
+    public class CodeController : ControllerBase
     {
         private readonly CodeTalkDBContext _context;
 
-        public CodeTalkController(CodeTalkDBContext context)
+        public CodeController(CodeTalkDBContext context)
         {
             _context = context;
             
