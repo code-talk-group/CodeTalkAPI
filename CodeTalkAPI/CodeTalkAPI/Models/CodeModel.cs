@@ -7,6 +7,21 @@ namespace CodeTalkAPI.Models
 {
     public class CodeModel
     {
-        //Richard - Need to add properties for code model's
+        
+        public int Id { get; set; }
+
+        public string BaseString { get; set; }
+
+        public Options options { get; set; }
     }
+
+    public enum Options
+    {
+        Function = 0,
+        For_Loop = 1,
+        If_Statement = 2,
+        Variable = 3,
+    }
+    
+
 }
