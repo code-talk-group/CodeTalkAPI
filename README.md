@@ -1,63 +1,40 @@
 # CodeTalk Backend 
 
 ## User Stories 
-### 1. Render Infomation to the Client
+### 1. Render Infomation to the MVC
 
-  As a Developer I want to be able to recieve code snippets from the Client side and 
-  send the snippets back as a sentence.
+  As a Developer I want to be able to recieve code snippets from the MVC side and 
+  translate the snippets into a sentence.
   
   Tasks:
-1. Get information back from the Client side. 
-2. Find the corresponding snippet from the database.
-3. Then output the stored sentence for that snippet. 
+1. Recieve information from the MVC side. 
+2. Be able to translate the information recieved using the databases stored info.
+3. Send the information to the MVC side. 
 
-### 2. Setup Database
+### 2. Database
 
-  As a Developer I want a database that has saved sentences for the options given.
+  As a Developer I want a database that has stored the information for translating the information for that table.
 
   Task:
-  1. Create a Default Snippets, User Snippets and an Options Enum table for the DB. 
-  2. Have the Default snippets table store the base sentences for the output.
-  3. Have the User Snippets save client's sentences.
-  4. Have the options table be an Enum of the code options stored.
+  1. Determine tables for the databases. 
+  2. Have those tables save the translated sentence for that code snippets allowed.
+  3. Be able to grab that information.
 
+### 3. Setup Api for MVC
 
-### 3. Setup Api  Get Method 
-
-As a developer I want to be able to Get the clients input using the API 
+As a developer i want to setup the routes and mapping for our api so that the MVC so we can do HTTP actions.
 
 Task:
-1. Create an API with proper routes so that the client can send information to the server.
-2. When the Get action is called it should find the default sentence for that option.
-3. Then be able to add the input variables from the api to the default sentence and send that back to the client.
+1. Create an API with proper routes .
+2. Be able to conduct http actions(Get, Post).
 
-
-### 4. Setup API  Post Method 
-
-As a developer I want to be able to store the Sentences given to me from the client.
+### 4. User table 
+As a developer I want to have a table that can store user's output and any edits made
 
 Task:
-1. Create a post method that generates the new sentence.
-2. Stores the user sentence into the User snippets table.
-3. Make sure to have a unique identifier so that we can show the client the saved sentence.
+1. Store users output inside a table.
+2. Recieve any edits made to that output given and replace the with the users edit inside the users DB.
 
-### 5. Setup API Delete Method 
-
-As a developer I want the user to be able to delete only there saved snippets 
-
-Task:
-1. Create a Delete method that takes in a unique identifier.
-2. Finds the resource by that unique identifier.
-3. Deletes that resource for the table.
-
-### 6. Setup API Put Method 
-
-As a developer I want the user to be able to edit there saved sentence.
-
-Task:
-1. Create a Put method that takes in a unique identifier.
-2. Finds the resource 
-3. Updates the new sentence for that resource 
 
 ## Database Schema 
 ![screenshot](/Assets/CodeTalkDB.jpg)
