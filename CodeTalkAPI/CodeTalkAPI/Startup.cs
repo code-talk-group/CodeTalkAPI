@@ -35,12 +35,12 @@ namespace CodeTalkAPI
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            string connectionstring = Environment.IsDevelopment()
-                ? Configuration.GetConnectionString("DefaultConnection")
-                : Configuration.GetConnectionString("ProductionConnection");
+            string ConnectionString = Environment.IsDevelopment()
+                ? Configuration.GetConnectionString("ConnectionStrings:DefaultConnection")
+                : Configuration.GetConnectionString("ConnectionStrings:ProductionConnection");
 
             services.AddDbContext<CodeTalkDBContext>(opt =>
-                opt.UseSqlServer(connectionstring));
+                opt.UseSqlServer(ConnectionString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
