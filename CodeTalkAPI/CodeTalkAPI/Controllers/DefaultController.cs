@@ -21,14 +21,14 @@ namespace CodeTalkAPI.Controllers
             
         }
 
-        //Richard - need to add routes
-        [HttpGet]
-        public IEnumerable<CodeModel> Get()
-        {
-            return _context.CodeModel;
-        }
+        //TODO Fix the _context that is being returned
+        //[HttpGet]
+        //public Default Get( int )
+        //{
+        //    return _context.UserSnippets;
+        //}
 
-        [HttpGet ("{option:int}", na)]
+        
         
 
 
