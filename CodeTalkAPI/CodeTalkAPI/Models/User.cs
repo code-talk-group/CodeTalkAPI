@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace CodeTalkAPI.Models
 {
-    public class UserModel
+    public class User
     {
         public int Id { get; set; }
 
@@ -13,6 +13,6 @@ namespace CodeTalkAPI.Models
 
         public string ReturnString { get; set; }
 
-        ICollection<CodeModel> CodeModels { get; set; }
+        ICollection<Default> CodeModels { get; set; }
     }
 }
