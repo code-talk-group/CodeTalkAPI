@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace CodeTalkAPI.Models
 {
-    public class CodeModel
+    public class Default
     {
         
         public int Id { get; set; }
@@ -13,6 +13,8 @@ namespace CodeTalkAPI.Models
         public string BaseString { get; set; }
 
         public Options options { get; set; }
+
+        ICollection<User> UserModels { get; set; }
     }
 
     public enum Options

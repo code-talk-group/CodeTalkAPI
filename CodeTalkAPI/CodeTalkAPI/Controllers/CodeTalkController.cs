@@ -12,16 +12,6 @@ namespace CodeTalkAPI.Controllers
     [ApiController]
     public class CodeTalkController : ControllerBase
     {
-        private readonly CodeTalkDBContext _context;
-
-        public CodeTalkController(CodeTalkDBContext context)
-        {
-            _context = context;
-            
-        }
-
-        //Richard - need to add routes
-        
-
+       
     }
 }
