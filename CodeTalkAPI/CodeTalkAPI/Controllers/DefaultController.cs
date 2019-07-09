@@ -10,7 +10,7 @@ namespace CodeTalkAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CodeTalkController : ControllerBase
+    public class DefaultController : ControllerBase
     {
        
     }
