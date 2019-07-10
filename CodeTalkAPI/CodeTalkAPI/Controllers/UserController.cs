@@ -75,5 +75,12 @@ namespace CodeTalkAPI.Controllers
 
             return NoContent();
         }
+
+        // GET api/user/Name/
+        [HttpGet("{Name}/")]
+        public async Task<ActionResult<User>> GetUserById(string name)
+        {
+            return await _context.UserSnippets.FindAsync(name); //might need to find it by name 
+        }
     }
 }

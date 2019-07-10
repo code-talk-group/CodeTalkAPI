@@ -28,16 +28,10 @@ namespace CodeTalkAPI.Controllers
         //    return defaultObject;
         //}
 
-        [HttpGet]
-        public ActionResult<Default> Get()
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Default>> GetDefaultById(int id)
         {
-            Default testobject = new Default
-                {
-                    Id = 1,
-                    BaseString = "MethodName is a public method with a void return type that takes in a DataType called Parameter. When the method is called all the statements and arguments defined within the curly braces will run.",
-                    Options = Options.Function
-                };
-            return testobject;
+            return await _context.DefaultSnippets.FindAsync(id); //might need to find it by name 
         }
     }
 }
