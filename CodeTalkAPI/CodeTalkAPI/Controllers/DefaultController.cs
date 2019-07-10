@@ -29,9 +29,15 @@ namespace CodeTalkAPI.Controllers
         //}
 
         [HttpGet]
-        public ActionResult<string> Get()
+        public ActionResult<Default> Get()
         {
-            return "Hello World!";
+            Default testobject = new Default
+                {
+                    Id = 1,
+                    BaseString = "MethodName is a public method with a void return type that takes in a DataType called Parameter. When the method is called all the statements and arguments defined within the curly braces will run.",
+                    Options = Options.Function
+                };
+            return testobject;
         }
     }
 }
