@@ -26,7 +26,7 @@ namespace CodeTalkAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Default>> GetDefaultById(int id)
         {
-            return await _context.DefaultSnippets.FindAsync(id); //might need to find it by name 
+            return await _context.DefaultSnippets.FindAsync(id); 
         }
 
         //GET api/default/Options/3

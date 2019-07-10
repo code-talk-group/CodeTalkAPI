@@ -33,7 +33,7 @@ namespace CodeTalkAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUserById(int id)
         {
-            return await _context.UserSnippets.FindAsync(id); //might need to find it by name 
+            return await _context.UserSnippets.FindAsync(id); 
         }
 
         // POST api/user
