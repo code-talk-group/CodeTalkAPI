@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CodeTalkAPI.Data;
+using CodeTalkAPI.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CodeTalkAPI.Controllers
 {
@@ -13,25 +15,33 @@ namespace CodeTalkAPI.Controllers
     {
         private readonly CodeTalkDBContext _context;
 
+        public UserController(CodeTalkDBContext context)
+        {
+            _context = context;
+        }
 
-        // GET api/values
+
+        // GET api/user
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public async Task<ActionResult<IEnumerable<User>>> GetAllUsersSaved()
         {
-            return new string[] { "value1", "value2" };
+            return await _context.UserSnippets.ToListAsync();
+            
         }
 
-        // GET api/values/5
+        // GET api/user/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public async Task<ActionResult<User>> GetUserById(int id)
         {
-            return "value";
+            return await _context.UserSnippets.FindAsync(id);
         }
 
-        // POST api/values
+        // POST api/user
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task PostUser([Bind("Name,ReturnString")] User user)
         {
+             _context.UserSnippets.Add(user);
+            await _context.SaveChangesAsync();
         }
 
         // PUT api/values/5
