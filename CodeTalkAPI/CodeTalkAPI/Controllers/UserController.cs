@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CodeTalkAPI.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CodeTalkAPI.Controllers
@@ -10,6 +11,9 @@ namespace CodeTalkAPI.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
+        private readonly CodeTalkDBContext _context;
+
+
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()

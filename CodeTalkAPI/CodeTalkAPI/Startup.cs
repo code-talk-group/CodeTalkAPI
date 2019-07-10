@@ -36,8 +36,8 @@ namespace CodeTalkAPI
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             string ConnectionString = Environment.IsDevelopment()
-                ? Configuration.GetConnectionString("ConnectionStrings:DefaultConnection")
-                : Configuration.GetConnectionString("ConnectionStrings:ProductionConnection");
+                ? Configuration.GetConnectionString("DefaultConnection")
+                : Configuration.GetConnectionString("ProductionConnection");
 
             services.AddDbContext<CodeTalkDBContext>(opt =>
                 opt.UseSqlServer(ConnectionString));

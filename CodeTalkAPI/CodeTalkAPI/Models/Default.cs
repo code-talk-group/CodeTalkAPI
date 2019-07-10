@@ -12,7 +12,7 @@ namespace CodeTalkAPI.Models
 
         public string BaseString { get; set; }
 
-        public Options options { get; set; }
+        public Options Options { get; set; }
 
         ICollection<User> UserModels { get; set; }
     }
