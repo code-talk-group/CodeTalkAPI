@@ -13,13 +13,13 @@ namespace CodeTalkAPI.Classes
 
             foreach (string input in formInputs)
             {
-                Re
+               spokenCodeString = ReplaceFirstOccurence(spokenCodeString, "_", input);
             }
             
             return spokenCodeString;
         }
 
-        public static string ReplaceFirstIOccurence(string originalString, string toBeReplaced, string  replacement)
+        public static string ReplaceFirstOccurence(string originalString, string toBeReplaced, string  replacement)
         {
             int occurence = originalString.IndexOf(toBeReplaced);
             if(occurence < 0)
