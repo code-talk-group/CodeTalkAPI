@@ -33,27 +33,54 @@ namespace CodeTalkAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUserById(int id)
         {
-            return await _context.UserSnippets.FindAsync(id);
+            return await _context.UserSnippets.FindAsync(id); 
         }
 
         // POST api/user
         [HttpPost]
-        public async Task PostUser([Bind("Name,ReturnString")] User user)
+        public async Task<ActionResult<User>> PostUser([Bind("Name,ReturnString")] User user)
         {
              _context.UserSnippets.Add(user);
             await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetUserById), new { id = user.Id }, user);
         }
 
-        // PUT api/values/5
+        // PUT api/user/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<ActionResult> UpdateUser(int id, User user)
         {
+            if(id != user.Id)
+            {
+                return BadRequest();
+            }
+            _context.Entry(user).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return NoContent();
         }
 
-        // DELETE api/values/5
+        // DELETE api/user/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
+            var userToDelete = await _context.UserSnippets.FindAsync(id);
+
+            if(userToDelete == null)
+            {
+                return NotFound();
+            }
+
+            _context.UserSnippets.Remove(userToDelete);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        // GET api/user/Name/name
+        [HttpGet("Name/{name}")]
+        public async Task<ActionResult<List<User>>> GetUserByName(string name)
+        {
+            return await _context.UserSnippets.Where(u => u.Name == name).ToListAsync(); //might need to find it by name 
         }
     }
 }

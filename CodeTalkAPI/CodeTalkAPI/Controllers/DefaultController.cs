@@ -7,6 +7,7 @@ using CodeTalkAPI.Models;
 using CodeTalkAPI.Classes;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CodeTalkAPI.Controllers
 {
@@ -21,23 +22,19 @@ namespace CodeTalkAPI.Controllers
             _context = context;
         }
 
-        //[HttpGet ("{options:int}", Name = "Get")]
-        //public ActionResult<object> Get(int Id)
-        //{
-        //    var defaultObject = _context.DefaultSnippets.Find(Id);
-        //    return defaultObject;
-        //}
-
-        [HttpGet]
-        public ActionResult<Default> Get()
+        //GET api/default/4
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Default>> GetDefaultById(int id)
         {
-            Default testobject = new Default
-                {
-                    Id = 1,
-                    BaseString = "MethodName is a public method with a void return type that takes in a DataType called Parameter. When the method is called all the statements and arguments defined within the curly braces will run.",
-                    Options = Options.Function
-                };
-            return testobject;
+            return await _context.DefaultSnippets.FindAsync(id); 
+        }
+
+        //GET api/default/Options/3
+        [HttpGet("Options/{options}")]
+        public async Task<ActionResult<List<Default>>> GetDefaultByOptions(string options)
+        {
+            Options newOption = (Options)Enum.Parse(typeof(Options), options);
+            return await _context.DefaultSnippets.Where(d => d.Options == newOption).ToListAsync();
         }
     }
 }
