@@ -47,6 +47,7 @@ namespace CodeTalkAPI.Data
                     Id = 1,
                     Name = "Seeds",
                     ReturnString = "Hello World im Testy",
+                    Input = "[i, am, a, string]"
                 },
 
                 new User
@@ -62,6 +63,7 @@ namespace CodeTalkAPI.Data
                     Name = "Seeds Part 3",
                     ReturnString = "Hello World im Testy 3",
                 });
+
         }
 
         public DbSet<Default> DefaultSnippets { get; set; }

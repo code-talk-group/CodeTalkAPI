@@ -3,14 +3,16 @@ using CodeTalkAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CodeTalkAPI.Migrations
 {
     [DbContext(typeof(CodeTalkDBContext))]
-    partial class CodeTalkDBContextModelSnapshot : ModelSnapshot
+    [Migration("20190710231739_newproperty")]
+    partial class newproperty
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -65,7 +67,7 @@ namespace CodeTalkAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Input");
+                    b.Property<string>("InputCollection");
 
                     b.Property<string>("Name");
 
@@ -79,7 +81,6 @@ namespace CodeTalkAPI.Migrations
                         new
                         {
                             Id = 1,
-                            Input = "[i, am, a, string]",
                             Name = "Seeds",
                             ReturnString = "Hello World im Testy"
                         },
