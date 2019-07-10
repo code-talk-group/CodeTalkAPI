@@ -59,10 +59,21 @@ namespace CodeTalkAPI.Controllers
             return NoContent();
         }
 
-        // DELETE api/values/5
+        // DELETE api/user/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
+            var userToDelete = await _context.UserSnippets.FindAsync(id);
+
+            if(userToDelete == null)
+            {
+                return NotFound();
+            }
+
+            _context.UserSnippets.Remove(userToDelete);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
         }
     }
 }
