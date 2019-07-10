@@ -76,7 +76,7 @@ namespace CodeTalkAPI.Controllers
             return NoContent();
         }
 
-        // GET api/user/Name/
+        // GET api/user/Name/name
         [HttpGet("Name/{name}")]
         public async Task<ActionResult<List<User>>> GetUserByName(string name)
         {
