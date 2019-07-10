@@ -7,18 +7,27 @@ namespace CodeTalkAPI.Classes
 {
     public class InputData
     {
-        public string CreateSpokenCodeString(string baseString, List<string> formInputs)
+        public static string CreateSpokenCodeString(string baseString, List<string> formInputs)
         {
             string spokenCodeString = baseString;
 
-            while (spokenCodeString.Contains("_")is true)
+            foreach (string input in formInputs)
             {
-                foreach (string input in formInputs)
-                {
-                    spokenCodeString.Replace("_", input);
-                }
-            }   
+                Re
+            }
+            
             return spokenCodeString;
+        }
+
+        public static string ReplaceFirstIOccurence(string originalString, string toBeReplaced, string  replacement)
+        {
+            int occurence = originalString.IndexOf(toBeReplaced);
+            if(occurence < 0)
+            {
+                return originalString;
+            }
+
+            return originalString.Substring(0, occurence) + replacement + originalString.Substring(occurence + toBeReplaced.Length);
         }
     }
 }
