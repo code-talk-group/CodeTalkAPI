@@ -77,10 +77,10 @@ namespace CodeTalkAPI.Controllers
         }
 
         // GET api/user/Name/
-        [HttpGet("{Name}/")]
-        public async Task<ActionResult<User>> GetUserById(string name)
+        [HttpGet("Name/{name}")]
+        public async Task<ActionResult<List<User>>> GetUserByName(string name)
         {
-            return await _context.UserSnippets.FindAsync(name); //might need to find it by name 
+            return await _context.UserSnippets.Where(u => u.Name == name).ToListAsync(); //might need to find it by name 
         }
     }
 }
