@@ -36,7 +36,7 @@ namespace CodeTalkAPI.Data
                 new Default
                 {
                     Id = 4,
-                    BaseString = "Needs the sentence",
+                    BaseString = "_ is a public method with a void return type. A _ variable called _ is declared and set to equal _.",
                     Options = Options.Variable
                 }
                 );
