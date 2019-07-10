@@ -18,5 +18,18 @@ namespace ClassMethodUnitTests
 
             Assert.Equal(expectedResult, actualResult);
         }
+
+        [Fact]
+        public void CanReplaceFirstOccurence()
+        {
+            string testString = "Hello _, _ to this _";
+            string testToBeReplace = "_";
+            string testReplacement = "name";
+            string expectedResult = "Hello name, _ to this _";
+
+            string actualResult = InputData.ReplaceFirstOccurence(testString, testToBeReplace, testReplacement);
+
+            Assert.Equal(expectedResult, actualResult);
+        }
     }
 }
