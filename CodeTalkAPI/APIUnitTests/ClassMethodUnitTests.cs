@@ -2,12 +2,26 @@ using System;
 using Xunit;
 using System.Collections.Generic;
 using CodeTalkAPI.Classes;
+using System.Linq;
 
 
 namespace ClassMethodUnitTests
 {
     public class UnitTest1
     {
+        //[Fact]
+        //public void CanCreateFormDataList()
+        //{
+        //    string testString = "["MethodName:Test\", \"DataType:int\", \"Parameter:testPara\"";
+        //    List<string> testFormInputs = new List<string> { "Test", "int", "testPara" };
+        //    List<string> actualList = InputData.CreateFormDataList(testString);
+
+        //    string actualResult = actualList.ElementAt(1);
+        //    string expectedResult = testFormInputs.ElementAt(1);
+
+        //    Assert.Equal(expectedResult, actualResult);
+        //}
+
         [Fact]
         public void CanCreateSpokenCodeString()
         {
