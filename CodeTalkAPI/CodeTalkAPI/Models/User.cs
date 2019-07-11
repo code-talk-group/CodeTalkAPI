@@ -15,10 +15,8 @@ namespace CodeTalkAPI.Models
 
         public string ReturnString { get; set; }
 
-        
         public string Input { get; set; }
         
-
         ICollection<Default> CodeModels { get; set; }
     }
 }

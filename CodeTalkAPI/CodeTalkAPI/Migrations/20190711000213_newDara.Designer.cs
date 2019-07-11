@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CodeTalkAPI.Migrations
 {
     [DbContext(typeof(CodeTalkDBContext))]
-    [Migration("20190709220900_addedazure")]
-    partial class addedazure
+    [Migration("20190711000213_newDara")]
+    partial class newDara
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,7 +28,7 @@ namespace CodeTalkAPI.Migrations
 
                     b.Property<string>("BaseString");
 
-                    b.Property<int>("options");
+                    b.Property<int>("Options");
 
                     b.HasKey("Id");
 
@@ -38,26 +38,26 @@ namespace CodeTalkAPI.Migrations
                         new
                         {
                             Id = 1,
-                            BaseString = "MethodName is a public method with a void return type that takes in a DataType called Parameter. When the method is called all the statements and arguments defined within the curly braces will run.",
-                            options = 0
+                            BaseString = "_ is a public method with a void return type that takes in a _ called _. When the method is called all the statements and arguments defined within the curly braces will run.",
+                            Options = 0
                         },
                         new
                         {
                             Id = 2,
-                            BaseString = "MethodName is a public method which takes in an integer array with IntValue values and returns an integer. A counter is declared and set to zero. A `For Loop` iterates through the array as long as i is less than the length of the array and adds 1 to the counter. When the loop is broken the counter is returned.",
-                            options = 1
+                            BaseString = "_ is a public method which takes in an integer array with _ values and returns an integer. A counter is declared and set to zero. A `For Loop` iterates through the array as long as i is less than the length of the array and adds 1 to the counter. When the loop is broken the counter is returned.",
+                            Options = 1
                         },
                         new
                         {
                             Id = 3,
-                            BaseString = "Needs the sentence",
-                            options = 2
+                            BaseString = "_ is a public method with a void return type that takes in an integer named _ . The integer's value is then set to _. Our if statement determines if _ is less than 10. If this is true, Yes is printed to the console. If this is not true, our else statement will print No to the console.",
+                            Options = 2
                         },
                         new
                         {
                             Id = 4,
-                            BaseString = "Needs the sentence",
-                            options = 3
+                            BaseString = "_ is a public method with a void return type. A _ variable called _ is declared and set to equal _.",
+                            Options = 3
                         });
                 });
 
@@ -67,6 +67,8 @@ namespace CodeTalkAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Input");
+
                     b.Property<string>("Name");
 
                     b.Property<string>("ReturnString");
@@ -74,6 +76,27 @@ namespace CodeTalkAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UserSnippets");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Input = "[i, am, a, string]",
+                            Name = "Seeds",
+                            ReturnString = "Hello World im Testy"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Another Seed",
+                            ReturnString = "Hello World im Testy 2"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Seeds Part 3",
+                            ReturnString = "Hello World im Testy 3"
+                        });
                 });
 #pragma warning restore 612, 618
         }
