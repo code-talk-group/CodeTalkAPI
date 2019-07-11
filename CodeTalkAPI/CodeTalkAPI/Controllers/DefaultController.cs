@@ -43,7 +43,7 @@ namespace CodeTalkAPI.Controllers
         }
 
         [HttpGet("{id:int}", Name = "Get")]
-        public async Task<object> GetJSON([FromBody] object request)
+        public object GetJSON([FromBody] object request)
         {
             var jsonObject = Convert.ToString(request);
             //alternative method var requestObject = (JObject)JsonConvert.DeserializeObject(jsonObject);
