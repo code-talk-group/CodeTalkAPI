@@ -9,7 +9,7 @@ namespace CodeTalkAPI.Models
 {
     public class User
     {
-        private CodeTalkDBContext _context;
+     
 
         public int Id { get; set; }
 
