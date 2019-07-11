@@ -60,7 +60,7 @@ namespace CodeTalkAPI.Controllers
         }
 
         // DELETE api/user/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}")] //might need to change so it can search by name 
         public async Task<IActionResult> Delete(int id)
         {
             var userToDelete = await _context.UserSnippets.FindAsync(id);
