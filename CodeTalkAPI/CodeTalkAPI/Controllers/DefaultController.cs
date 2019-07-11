@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Converters;
 
 namespace CodeTalkAPI.Controllers
 {
@@ -40,13 +41,13 @@ namespace CodeTalkAPI.Controllers
 
 
         [HttpGet("{id:int}", Name = "Get")]
-        public async Task<object> GetJSON([FromBody] object userInputs)
+        public async Task<object> GetJSON([FromBody] object request)
         {
-            var jsonObject = Convert.ToString(userInputs);
+            var jsonObject = Convert.ToString(request);
+            //can also use (JObject)JsonConvert.DeserializeObject(jsonObject);
             var requestObject = JObject.Parse(jsonObject);
-            var id = requestObject["codeName"]["id"].ToString();
-            var codeName = requestObject["codeName"].ToString();
-            var formInputs = requestObject["userInputs"].ToString();
+            var id = requestObject["id"].ToString();
+           
 
             
             
