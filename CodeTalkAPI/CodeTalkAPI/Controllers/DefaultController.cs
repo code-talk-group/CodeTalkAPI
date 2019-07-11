@@ -8,6 +8,7 @@ using CodeTalkAPI.Classes;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Linq;
 
 namespace CodeTalkAPI.Controllers
 {
@@ -23,18 +24,31 @@ namespace CodeTalkAPI.Controllers
         }
 
         //GET api/default/4
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<ActionResult<Default>> GetDefaultById(int id)
         {
             return await _context.DefaultSnippets.FindAsync(id); 
         }
 
         //GET api/default/Options/3
-        [HttpGet("Options/{options}")]
+        [HttpGet("Options/{options:string}")]
         public async Task<ActionResult<List<Default>>> GetDefaultByOptions(string options)
         {
             Options newOption = (Options)Enum.Parse(typeof(Options), options);
             return await _context.DefaultSnippets.Where(d => d.Options == newOption).ToListAsync();
+        }
+
+
+        [HttpGet("{id:int}", Name = "Get")]
+        public async Task<object> GetJSON([FromBody] object userInputs)
+        {
+            var jsonObject = Convert.ToString(userInputs);
+            var requestObject = JObject.Parse(jsonObject);
+
+
+            
+            var defaultObject = _context.DefaultSnippets.Find(id);
+            return defaultObject;
         }
     }
 }
