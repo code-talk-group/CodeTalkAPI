@@ -44,8 +44,11 @@ namespace CodeTalkAPI.Controllers
         {
             var jsonObject = Convert.ToString(userInputs);
             var requestObject = JObject.Parse(jsonObject);
+            var id = requestObject["codeName"]["id"].ToString();
+            var codeName = requestObject["codeName"].ToString();
+            var formInputs = requestObject["userInputs"].ToString();
 
-
+            
             
             var defaultObject = _context.DefaultSnippets.Find(id);
             return defaultObject;

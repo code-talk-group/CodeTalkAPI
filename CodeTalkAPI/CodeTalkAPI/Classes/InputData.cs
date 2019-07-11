@@ -7,6 +7,24 @@ namespace CodeTalkAPI.Classes
 {
     public class InputData
     {
+        public static List<string> CreateFormDataList(string formInputs)
+        {
+            List<string> formDataList = new List<string>();
+            string inputsData = formInputs;
+
+            int inputsCount = formInputs.TakeWhile(c => c == ':').Count();
+
+            while (inputsData.Contains(":") is true)
+            {
+                string inputData = inputsData.Substring(inputsData.IndexOf(":"), inputsData.IndexOf("\""));
+                formDataList.Add(inputData);
+                inputsData.Remove(inputsData.IndexOf(":"), inputsData.IndexOf("\""));
+            }
+
+            return formDataList;
+        }
+
+
         public static string CreateSpokenCodeString(string baseString, List<string> formInputs)
         {
             string spokenCodeString = baseString;
@@ -19,7 +37,7 @@ namespace CodeTalkAPI.Classes
             return spokenCodeString;
         }
 
-        public static string ReplaceFirstOccurence(string originalString, string toBeReplaced, string  replacement)
+        public static string ReplaceFirstOccurence(string originalString, string toBeReplaced, string replacement)
         {
             int occurence = originalString.IndexOf(toBeReplaced);
             if(occurence < 0)
