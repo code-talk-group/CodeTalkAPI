@@ -12,13 +12,15 @@ namespace CodeTalkAPI.Classes
             List<string> formDataList = new List<string>();
             string inputsData = formInputs;
 
-            int inputsCount = formInputs.TakeWhile(c => c == ':').Count();
+            int count = inputsData.Count(c => c == ':');
+            int counter = 0;
 
-            while (inputsData.Contains(":") is true)
-            {
+            while(counter <= count)
+            {  
                 string inputData = inputsData.Substring(inputsData.IndexOf(":"), inputsData.IndexOf("\""));
                 formDataList.Add(inputData);
                 inputsData.Remove(inputsData.IndexOf(":"), inputsData.IndexOf("\""));
+                counter++;
             }
 
             return formDataList;
