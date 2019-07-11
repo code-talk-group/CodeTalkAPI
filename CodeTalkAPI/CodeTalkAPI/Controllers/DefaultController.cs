@@ -66,7 +66,7 @@ namespace CodeTalkAPI.Controllers
                 Input = inputsString
             };
 
-            var returnObject = await UserController.PostUser();
+            var returnObject = await UserController.PostUser(userObject);
             return Ok(returnObject);
         }
     }
