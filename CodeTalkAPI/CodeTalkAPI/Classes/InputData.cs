@@ -25,7 +25,7 @@ namespace CodeTalkAPI.Classes
             }
             if (id == 2)
             {
-                string[] forLoopParams = CreateFunctionParams(requestObject);
+                string[] forLoopParams = CreateForLoopParams(requestObject);
                 ForLoopInput forLoopInputs = new ForLoopInput
                 {
                     MethodName = forLoopParams[0],
@@ -35,7 +35,7 @@ namespace CodeTalkAPI.Classes
             }
             if (id == 3)
             {
-                string[] ifStatementParams = CreateFunctionParams(requestObject);
+                string[] ifStatementParams = CreateIfStatementParams(requestObject);
                 IfStatementInput ifStatementInputs = new IfStatementInput
                 {
                     MethodName = ifStatementParams[0],
@@ -47,13 +47,13 @@ namespace CodeTalkAPI.Classes
             }
             if (id == 4)
             {
-                string[] ifStatementParams = CreateFunctionParams(requestObject);
+                string[] variableParams = CreateVariableParams(requestObject);
                 VariableInput variableInputs = new VariableInput
                 {
-                    MethodName = ifStatementParams[0],
-                    DataType = ifStatementParams[1],
-                    VarName = ifStatementParams[2],
-                    UserData = ifStatementParams[3]
+                    MethodName = variableParams[0],
+                    DataType = variableParams[1],
+                    VarName = variableParams[2],
+                    UserData = variableParams[3]
                 };
                 return variableInputs;
             }
@@ -104,24 +104,45 @@ namespace CodeTalkAPI.Classes
             return variableParams;
         }
 
-        //public static List<string> CreateFormDataList(string formInputs)
-        //{
-        //    List<string> formDataList = new List<string>();
-        //    string inputsData = formInputs;
+        public static List<string> CreateFormDataList(int id, JObject requestObject)
+        {
+            List<string> formDataList = new List<string>();
 
-        //    int count = inputsData.Count(c => c == ':');
-        //    int counter = 0;
+            if (id == 1)
+            {
+                string[] functionInputs = CreateFunctionParams(requestObject);
+                foreach (string input in functionInputs)
+                {
+                    formDataList.Add(input);
+                }
+            }
+            if(id == 2)
+            {
+                string[] forLoopInputs = CreateForLoopParams(requestObject);
+                foreach (string input in forLoopInputs)
+                {
+                    formDataList.Add(input);
+                }
+            }
+            if(id == 3)
+            {
+                string[] ifStatementInputs = CreateIfStatementParams(requestObject);
+                foreach (string input in ifStatementInputs)
+                {
+                    formDataList.Add(input);
+                }
+            }
+            if(id == 4)
+            {
+                string[] variableInputs = CreateVariableParams(requestObject);
+                foreach (string input in variableInputs)
+                {
+                    formDataList.Add(input);
+                }
+            }
 
-        //    while(counter <= count)
-        //    {  
-        //        string inputData = inputsData.Substring(inputsData.IndexOf(":"), inputsData.IndexOf("\""));
-        //        formDataList.Add(inputData);
-        //        inputsData.Remove(inputsData.IndexOf(":"), inputsData.IndexOf("\""));
-        //        counter++;
-        //    }
-
-        //    return formDataList;
-        //}
+            return formDataList;
+        }
 
         public static string CreateSpokenCodeString(string baseString, List<string> formInputs)
         {

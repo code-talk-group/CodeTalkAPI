@@ -56,18 +56,18 @@ namespace CodeTalkAPI.Controllers
 
             dynamic defaultObject = _context.DefaultSnippets.Find(id);
             string baseString = defaultObject.baseString;
-
-
+            List<string> formDataList = InputData.CreateFormDataList(id, requestObject);
+            string returnString = InputData.CreateSpokenCodeString(baseString, formDataList);
 
             User userObject = new User(codeName, returnString, inputsString)
             {
                 Name = codeName,
-                ReturnString =
+                ReturnString = returnString,
                 Input = inputsString
             };
 
-            var returnObject = await UserController.PostUser(userObject);
-            return Ok(returnObject);
+            //var returnObject = await UserController.PostUser(userObject);
+            return RedirectToAction("User", "PostUser", userObject);
         }
     }
 }
