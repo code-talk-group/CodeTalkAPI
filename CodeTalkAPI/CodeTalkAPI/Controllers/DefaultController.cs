@@ -88,12 +88,12 @@ namespace CodeTalkAPI.Controllers
             string returnString = InputData.CreateSpokenCodeString(baseString, formDataList);
 
 
-//            User userObject = new User(codeName, returnString, inputsString)
-//            {
-//                Name = codeName,
-//                ReturnString = returnString,
-//                Input = inputsString
-//            };
+            User userObject = new User(codeName, returnString, inputsString)
+            {
+                Name = codeName,
+                ReturnString = returnString,
+                Input = inputsString
+            };
 
 
             //var returnObject = await UserController.PostUser(userObject);

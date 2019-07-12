@@ -39,7 +39,7 @@ namespace CodeTalkAPI
             services.AddScoped<IUserManagement, UserService>();
 
             string ConnectionString = Environment.IsDevelopment()
-                ? Configuration.GetConnectionString("ProductionConnection")
+                ? Configuration.GetConnectionString("DefaultConnection")
                 : Configuration.GetConnectionString("ProductionConnection");
 
             services.AddDbContext<CodeTalkDBContext>(opt =>
