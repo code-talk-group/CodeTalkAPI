@@ -40,10 +40,12 @@ namespace CodeTalkAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<User>> PostUser([Bind("Name,ReturnString")] User user)
         {
-             _context.UserSnippets.Add(user);
+            _context.UserSnippets.Add(user);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetUserById), new { id = user.Id }, user);
+            var postResult = await GetUserById(user.Id);
+
+            return postResult;
         }
 
         // PUT api/user/5

@@ -12,7 +12,8 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json;
 using CodeTalkAPI.Controllers;
-
+using CodeTalkAPI.Interfaces;
+using System.Text;
 
 namespace CodeTalkAPI.Controllers
 {
@@ -21,10 +22,12 @@ namespace CodeTalkAPI.Controllers
     public class DefaultController : ControllerBase
     {
         private CodeTalkDBContext _context;
+        private IUserManagement _userManagement;
 
-        public DefaultController(CodeTalkDBContext context)
+        public DefaultController(CodeTalkDBContext context, IUserManagement userManagement)
         {
             _context = context;
+            _userManagement = userManagement;
         }
 
         [HttpGet("{id:int}")]
@@ -39,22 +42,51 @@ namespace CodeTalkAPI.Controllers
             return await _context.DefaultSnippets.ToListAsync();
         }
 
-//        [HttpGet("{id:int}", Name = "Get")]
-//        public object GetJSON([FromBody] object request)
-//        {
-//            var jsonObject = Convert.ToString(request);
-//            //alternative method var requestObject = (JObject)JsonConvert.DeserializeObject(jsonObject);
-//            var requestObject = JObject.Parse(jsonObject);
-//            var id = Convert.ToInt32(requestObject["ID"].ToString());
-//            var codeName = requestObject["CodeName"].ToString();
-//            object inputs = InputData.CreateObjectFromOptionReceived(id, requestObject);
-//            string inputsString = inputs.ToString();
+
+        [HttpPost]
+        public async Task<object> Post([FromBody] object request)
+        {
+            var jsonObject = Convert.ToString(request);
+            //var requestObject = (JObject)JsonConvert.DeserializeObject(jsonObject);
+            var requestObject = JObject.Parse(jsonObject);
+            var id = Convert.ToInt32(requestObject["ID"].ToString());
+            var codeName = requestObject["CodeName"].ToString();
+            var inputs = InputData.CreateObjectFromOptionReceived(id, requestObject);
+
+            StringBuilder sb = new StringBuilder();
+
+            if (inputs is FunctionInput)
+            {
+                FunctionInput test = (FunctionInput)inputs;
+                sb.Append($"{inputs.MethodName}, {test.DataType}, {test.ParameterName}");
+            } 
+            else if(inputs is ForLoopInput)
+            {
+                ForLoopInput test = (ForLoopInput)inputs;
+                sb.Append($"{inputs.MethodName}, {test.ArrayName}");
+            }
+            else if (inputs is IfStatementInput)
+            {
+                IfStatementInput test = (IfStatementInput)inputs;
+                sb.Append($"{inputs.MethodName}, {test.ParameterName}, {test.IntegerValue}");
+            }
+            else if (inputs is VariableInput)
+            {
+                VariableInput test = (VariableInput)inputs;
+                sb.Append($"{inputs.MethodName}, {test.DataType}, {test.VariableName}, {test.VariableValue}");
+            }
 
 
-//            dynamic defaultObject = _context.DefaultSnippets.Find(id);
-//            string baseString = defaultObject.baseString;
-//            List<string> formDataList = InputData.CreateFormDataList(id, requestObject);
-//            string returnString = InputData.CreateSpokenCodeString(baseString, formDataList);
+
+            string inputsString = sb.ToString();
+
+            var defaultObject = GetDefaultById(id).Result;
+            string baseString = defaultObject.Value.BaseString;
+
+
+            List<string> formDataList = InputData.CreateFormDataList(id, requestObject);
+            string returnString = InputData.CreateSpokenCodeString(baseString, formDataList);
+
 
 //            User userObject = new User(codeName, returnString, inputsString)
 //            {
@@ -63,8 +95,12 @@ namespace CodeTalkAPI.Controllers
 //                Input = inputsString
 //            };
 
-//            //var returnObject = await UserController.PostUser(userObject);
-//            return RedirectToAction("User", "PostUser", userObject);
-//        }
+
+            //var returnObject = await UserController.PostUser(userObject);
+            var userEquals = await _userManagement.CreateUserAsync(userObject);
+            return userEquals;
+
+        }
+
     }
 }
