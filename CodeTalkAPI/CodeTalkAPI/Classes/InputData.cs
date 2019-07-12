@@ -41,6 +41,7 @@ namespace CodeTalkAPI.Classes
                     MethodName = ifStatementParams[0],
                     ParameterName = ifStatementParams[1],
                     IntegerValue = ifStatementParams[2],
+                    IntegerValue2 = ifStatementParams[3],
                 };
                 return ifStatementInputs;
             }
@@ -87,7 +88,7 @@ namespace CodeTalkAPI.Classes
             string parameterName = requestObject["ParameterName"].Value<string>();
             string integerValue = requestObject["IntegerValue"].Value<string>();
 
-            string[] ifStatementParams = new string[3] { methodName, parameterName, integerValue };
+            string[] ifStatementParams = new string[4] { methodName, parameterName, integerValue, integerValue };
             return ifStatementParams;
         }
 

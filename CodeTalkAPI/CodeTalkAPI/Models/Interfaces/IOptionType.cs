@@ -33,6 +33,7 @@ namespace CodeTalkAPI.Classes
     {
         public string ParameterName { get; set; }
         public string IntegerValue { get; set; }
+        public string IntegerValue2 { get; set; }
         public int Id { get; set; }
         public string CodeName { get; set; }
         public string MethodName { get; set; }
