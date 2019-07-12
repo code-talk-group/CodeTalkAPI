@@ -40,30 +40,6 @@ namespace CodeTalkAPI.Data
                     Options = Options.Variable
                 }
                 );
-
-            modelBuilder.Entity<User>().HasData(
-                new User
-                {
-                    Id = 1,
-                    Name = "Seeds",
-                    ReturnString = "Hello World im Testy",
-                    Input = "[i, am, a, string]"
-                },
-
-                new User
-                {
-                    Id = 2,
-                    Name = "Another Seed",
-                    ReturnString = "Hello World im Testy 2",
-                },
-
-                new User
-                {
-                    Id = 3,
-                    Name = "Seeds Part 3",
-                    ReturnString = "Hello World im Testy 3",
-                });
-
         }
 
         public DbSet<Default> DefaultSnippets { get; set; }
