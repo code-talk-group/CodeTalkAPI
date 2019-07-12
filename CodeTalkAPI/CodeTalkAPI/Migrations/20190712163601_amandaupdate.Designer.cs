@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CodeTalkAPI.Migrations
 {
     [DbContext(typeof(CodeTalkDBContext))]
-    [Migration("20190712011247_removeUserSeed")]
-    partial class removeUserSeed
+    [Migration("20190712163601_amandaupdate")]
+    partial class amandaupdate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -38,7 +38,7 @@ namespace CodeTalkAPI.Migrations
                         new
                         {
                             Id = 1,
-                            BaseString = "_ is a public method with a void return type that takes in a _ called _ . When the method is called all the statements and arguments defined within the curly braces will run.",
+                            BaseString = "_ is a public method with a void return type that takes in a  _ called _. When the method is called all the statements and arguments defined within the curly braces will run.",
                             Options = 0
                         },
                         new
@@ -50,7 +50,7 @@ namespace CodeTalkAPI.Migrations
                         new
                         {
                             Id = 3,
-                            BaseString = "_ is a public method with a void return type that takes in an integer named _ . The integer's value is then set to _. Our if statement determines if _ is less than 10. If this is true, Yes is printed to the console. If this is not true, our else statement will print No to the console.",
+                            BaseString = "_ is a public method with a void return type that takes in an integer named _. The integer's value is then set to _. Our if statement determines if _ is less than 10. If this is true, Yes is printed to the console. If this is not true, our else statement will print No to the console.",
                             Options = 2
                         },
                         new
