@@ -7,7 +7,7 @@ namespace CodeTalkAPI.Classes
 {
     public class UserInput
     {
-        public class FunctionInput
+        public class FuntionInput
         {
             public string MethodName { get; set; }
 
@@ -21,15 +21,12 @@ namespace CodeTalkAPI.Classes
             /// <param name="methodName"></param>
             /// <param name="userDataType"></param>
             /// <param name="paramName"></param>
-            public FunctionInput(string methodName, string userDataType, string paramName)
+            public FuntionInput(string methodName, string userDataType, string paramName)
             {
                 MethodName = methodName;
                 UserDataType = userDataType;
                 ParamName = paramName;
             }
-
-            public FunctionInput()
-            {}
         }
 
         public class ForLoopInput
@@ -48,12 +45,9 @@ namespace CodeTalkAPI.Classes
                 MethodName = methodName;
                 ArrayName = arrayName;
             }
-
-            public ForLoopInput()
-            { }
         }
 
-        public class IfStatementInput
+        public class IfStatmentInput
         {
             public string MethodName { get; set; }
 
@@ -70,16 +64,13 @@ namespace CodeTalkAPI.Classes
             /// <param name="pName"></param>
             /// <param name="userInt"></param>
             /// <param name="pName2"></param>
-            public IfStatementInput(string methodName, string pName, string userInt, string pName2)
+            public IfStatmentInput(string methodName, string pName, string userInt, string pName2)
             {
                 MethodName = methodName;
                 PName = pName;
                 UserInt = userInt;
                 PName2 = pName2;
             }
-            public IfStatementInput()
-            { }
-
         }
         
         public class VariableInput
@@ -106,8 +97,6 @@ namespace CodeTalkAPI.Classes
                 VarName = varName;
                 UserData = userData;
             }
-            public VariableInput()
-            { }
         }
     }
 }

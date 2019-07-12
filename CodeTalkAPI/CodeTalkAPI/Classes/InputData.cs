@@ -3,67 +3,62 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using static CodeTalkAPI.Classes.UserInput;
 
 namespace CodeTalkAPI.Classes
 {
     public class InputData
     {
-        public static object CreateObjectFromOptionReceived(int id, JObject requestObject)
+        public static object CreateObjectFromOptionReceived(int id, string requestObject)
         {
             if(id == 1)
             {
                 string[] functionParams = CreateFunctionParams(requestObject);
-                FunctionInput functionInputs = new FunctionInput()
+                FunctionInput object = new FunctionInput
                 {
                     MethodName = functionParams[0],
                     UserDataType = functionParams[1],
                     ParamName = functionParams[3]
                 };
-                return functionInputs;
+                return FunctionInput;
             }
             if (id == 2)
             {
-                string[] forLoopParams = CreateForLoopParams(requestObject);
-                ForLoopInput forLoopInputs = new ForLoopInput
+                string[] forLoopParams = CreateFunctionParams(requestObject);
+                ForLoopInput object = new ForLoopInput
                 {
                     MethodName = forLoopParams[0],
                     ArrayName = forLoopParams[1],
                 };
-                return forLoopInputs;
+                return ForLoopInput;
             }
             if (id == 3)
             {
-                string[] ifStatementParams = CreateIfStatementParams(requestObject);
-                IfStatementInput ifStatementInputs = new IfStatementInput
+                string[] ifStatementParams = CreateFunctionParams(requestObject);
+                IfStatementInput object = new IfStatementInput
                 {
                     MethodName = ifStatementParams[0],
-                    PName = ifStatementParams[1],
-                    UserInt = ifStatementParams[2],
+                    UserDataType = ifStatementParams[1],
+                    ParamName = ifStatementParams[2],
                     PName2 = ifStatementParams[3]
                 };
-                return ifStatementInputs;
+                return IfStatementInput;
             }
             if (id == 4)
             {
-                string[] variableParams = CreateVariableParams(requestObject);
-                VariableInput variableInputs = new VariableInput
+                string[] ifStatementParams = CreateFunctionParams(requestObject);
+                VariableInput object = new BariableInput
                 {
-                    MethodName = variableParams[0],
-                    DataType = variableParams[1],
-                    VarName = variableParams[2],
-                    UserData = variableParams[3]
+                    MethodName = ifStatementParams[0],
+                    DataType = ifStatementParams[1],
+                    VarName = ifStatementParams[2],
+                    UserData = ifStatementParams[3]
                 };
-                return variableInputs;
-            }
-            else
-            {
-                return null;
+                return VariableInput;
             }
         }
 
-        public static string[] CreateFunctionParams(JObject requestObject)
+        public static string[] CreateFunctionParams(string requestObject)
         {
             string methodName = requestObject["MethodName"].Value<string>();
             string userDataType = requestObject["UserDataType"].Value<string>();
@@ -73,7 +68,7 @@ namespace CodeTalkAPI.Classes
             return functionParams;
         }
 
-        public static string[] CreateForLoopParams(JObject requestObject)
+        public static string[] CreateForLoopParams(string requestObject)
         {
             string methodName = requestObject["MethodName"].Value<string>();
             string arrayName = requestObject["ArrayName"].Value<string>();
@@ -82,7 +77,7 @@ namespace CodeTalkAPI.Classes
             return forLoopParams;
         }
 
-        public static string[] CreateIfStatementParams(JObject requestObject)
+        public static string[] CreateIfStatementParams(string requestObject)
         {
             string methodName = requestObject["MethodName"].Value<string>();
             string pName = requestObject["pName"].Value<string>();
@@ -93,7 +88,7 @@ namespace CodeTalkAPI.Classes
             return ifStatementParams;
         }
 
-        public static string[] CreateVariableParams(JObject requestObject)
+        public static string[] CreateVariableParams(string requestObject)
         {
             string methodName = requestObject["MethodName"].Value<string>();
             string dataType = requestObject["dataType"].Value<string>();
@@ -104,45 +99,24 @@ namespace CodeTalkAPI.Classes
             return variableParams;
         }
 
-        public static List<string> CreateFormDataList(int id, JObject requestObject)
-        {
-            List<string> formDataList = new List<string>();
+        //public static List<string> CreateFormDataList(string formInputs)
+        //{
+        //    List<string> formDataList = new List<string>();
+        //    string inputsData = formInputs;
 
-            if (id == 1)
-            {
-                string[] functionInputs = CreateFunctionParams(requestObject);
-                foreach (string input in functionInputs)
-                {
-                    formDataList.Add(input);
-                }
-            }
-            if(id == 2)
-            {
-                string[] forLoopInputs = CreateForLoopParams(requestObject);
-                foreach (string input in forLoopInputs)
-                {
-                    formDataList.Add(input);
-                }
-            }
-            if(id == 3)
-            {
-                string[] ifStatementInputs = CreateIfStatementParams(requestObject);
-                foreach (string input in ifStatementInputs)
-                {
-                    formDataList.Add(input);
-                }
-            }
-            if(id == 4)
-            {
-                string[] variableInputs = CreateVariableParams(requestObject);
-                foreach (string input in variableInputs)
-                {
-                    formDataList.Add(input);
-                }
-            }
+        //    int count = inputsData.Count(c => c == ':');
+        //    int counter = 0;
 
-            return formDataList;
-        }
+        //    while(counter <= count)
+        //    {  
+        //        string inputData = inputsData.Substring(inputsData.IndexOf(":"), inputsData.IndexOf("\""));
+        //        formDataList.Add(inputData);
+        //        inputsData.Remove(inputsData.IndexOf(":"), inputsData.IndexOf("\""));
+        //        counter++;
+        //    }
+
+        //    return formDataList;
+        //}
 
         public static string CreateSpokenCodeString(string baseString, List<string> formInputs)
         {
