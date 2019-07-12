@@ -18,7 +18,7 @@ namespace CodeTalkAPI.Data
                 new Default
                 {
                     Id = 1,
-                    BaseString = "MethodName is a public method with a void return type that takes in a *UserDataType* called *ParamName* . When the method is called all the statements and arguments defined within the curly braces will run.",
+                    BaseString = "MethodName is a public method with a void return type that takes in a UserDataType called ParamName. When the method is called all the statements and arguments defined within the curly braces will run.",
                     Options = Options.Function
                 },
                 new Default
@@ -30,7 +30,7 @@ namespace CodeTalkAPI.Data
                 new Default
                 {
                     Id = 3,
-                    BaseString = "MethodName is a public method with a void return type that takes in an integer named pName . The integer's value is then set to userInt. Our if statement determines if pName is less than 10. If this is true, Yes is printed to the console. If this is not true, our else statement will print No to the console.",
+                    BaseString = "MethodName is a public method with a void return type that takes in an integer named pName. The integer's value is then set to userInt. Our if statement determines if pName is less than 10. If this is true, Yes is printed to the console. If this is not true, our else statement will print No to the console.",
                     Options = Options.If_Statement
                 },
                 new Default
