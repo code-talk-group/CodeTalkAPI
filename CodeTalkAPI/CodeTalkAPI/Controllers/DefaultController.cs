@@ -33,7 +33,7 @@ namespace CodeTalkAPI.Controllers
         [HttpGet("{id:int}")]
         public async Task<ActionResult<Default>> GetDefaultById(int id)
         {
-            return await _context.DefaultSnippets.FindAsync(id); 
+            return await _context.DefaultSnippets.FindAsync(id);
         }
 
         [HttpGet]
@@ -41,6 +41,7 @@ namespace CodeTalkAPI.Controllers
         {
             return await _context.DefaultSnippets.ToListAsync();
         }
+
 
         [HttpPost]
         public async Task<object> Post([FromBody] object request)
@@ -76,25 +77,30 @@ namespace CodeTalkAPI.Controllers
             }
 
 
+
             string inputsString = sb.ToString();
 
             var defaultObject = GetDefaultById(id).Result;
             string baseString = defaultObject.Value.BaseString;
 
+
             List<string> formDataList = InputData.CreateFormDataList(id, requestObject);
             string returnString = InputData.CreateSpokenCodeString(baseString, formDataList);
 
-            User userObject = new User(codeName, returnString, inputsString)
-            {
-                Name = codeName,
-                ReturnString = returnString,
-                Input = inputsString
-            };
+
+//            User userObject = new User(codeName, returnString, inputsString)
+//            {
+//                Name = codeName,
+//                ReturnString = returnString,
+//                Input = inputsString
+//            };
+
 
             //var returnObject = await UserController.PostUser(userObject);
             var userEquals = await _userManagement.CreateUserAsync(userObject);
             return userEquals;
 
         }
+
     }
 }
