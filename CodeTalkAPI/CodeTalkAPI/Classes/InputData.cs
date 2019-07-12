@@ -10,7 +10,7 @@ namespace CodeTalkAPI.Classes
 {
     public class InputData
     {
-        public static object CreateObjectFromOptionReceived(int id, JObject requestObject)
+        public static IOptionType CreateObjectFromOptionReceived(int id, JObject requestObject)
         {
             if(id == 1)
             {
@@ -18,8 +18,8 @@ namespace CodeTalkAPI.Classes
                 FunctionInput functionInputs = new FunctionInput()
                 {
                     MethodName = functionParams[0],
-                    UserDataType = functionParams[1],
-                    ParamName = functionParams[2]
+                    DataType = functionParams[1],
+                    ParameterName = functionParams[2]
                 };
                 return functionInputs;
             }
@@ -39,9 +39,8 @@ namespace CodeTalkAPI.Classes
                 IfStatementInput ifStatementInputs = new IfStatementInput
                 {
                     MethodName = ifStatementParams[0],
-                    PName = ifStatementParams[1],
-                    UserInt = ifStatementParams[2],
-                    PName2 = ifStatementParams[3]
+                    ParameterName = ifStatementParams[1],
+                    IntegerValue = ifStatementParams[2],
                 };
                 return ifStatementInputs;
             }
@@ -52,8 +51,8 @@ namespace CodeTalkAPI.Classes
                 {
                     MethodName = variableParams[0],
                     DataType = variableParams[1],
-                    VarName = variableParams[2],
-                    UserData = variableParams[3]
+                    VariableName = variableParams[2],
+                    VariableValue = variableParams[3]
                 };
                 return variableInputs;
             }
@@ -66,10 +65,10 @@ namespace CodeTalkAPI.Classes
         public static string[] CreateFunctionParams(JObject requestObject)
         {
             string methodName = requestObject["MethodName"].Value<string>();
-            string userDataType = requestObject["UserDataType"].Value<string>();
-            string paramName = requestObject["ParamName"].Value<string>();
+            string dataType = requestObject["DataType"].Value<string>();
+            string parameterName = requestObject["ParameterName"].Value<string>();
 
-            string[] functionParams = new string[3] { methodName, userDataType, paramName };
+            string[] functionParams = new string[3] { methodName, dataType, parameterName };
             return functionParams;
         }
 
@@ -85,22 +84,21 @@ namespace CodeTalkAPI.Classes
         public static string[] CreateIfStatementParams(JObject requestObject)
         {
             string methodName = requestObject["MethodName"].Value<string>();
-            string pName = requestObject["pName"].Value<string>();
-            string userInt = requestObject["userInt"].Value<string>();
-            string pName2 = requestObject["pName"].Value<string>();
+            string parameterName = requestObject["ParameterName"].Value<string>();
+            string integerValue = requestObject["IntegerValue"].Value<string>();
 
-            string[] ifStatementParams = new string[4] { methodName, pName, userInt, pName2 };
+            string[] ifStatementParams = new string[3] { methodName, parameterName, integerValue };
             return ifStatementParams;
         }
 
         public static string[] CreateVariableParams(JObject requestObject)
         {
             string methodName = requestObject["MethodName"].Value<string>();
-            string dataType = requestObject["dataType"].Value<string>();
-            string varName = requestObject["varName"].Value<string>();
-            string userData = requestObject["userData"].Value<string>();
+            string dataType = requestObject["DataType"].Value<string>();
+            string variableName = requestObject["VariableName"].Value<string>();
+            string variableValue = requestObject["VariableValue"].Value<string>();
 
-            string[] variableParams = new string[4] { methodName, dataType, varName, userData };
+            string[] variableParams = new string[4] { methodName, dataType, variableName, variableValue };
             return variableParams;
         }
 

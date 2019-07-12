@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CodeTalkAPI.Data;
+using CodeTalkAPI.Interfaces;
 using CodeTalkAPI.Models;
+using CodeTalkAPI.Models.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -34,6 +36,7 @@ namespace CodeTalkAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddScoped<IUserManagement, UserService>();
 
             string ConnectionString = Environment.IsDevelopment()
                 ? Configuration.GetConnectionString("DefaultConnection")

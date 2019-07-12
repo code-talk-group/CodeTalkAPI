@@ -12,7 +12,8 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json;
 using CodeTalkAPI.Controllers;
-
+using CodeTalkAPI.Interfaces;
+using System.Text;
 
 namespace CodeTalkAPI.Controllers
 {
@@ -21,10 +22,12 @@ namespace CodeTalkAPI.Controllers
     public class DefaultController : ControllerBase
     {
         private CodeTalkDBContext _context;
+        private IUserManagement _userManagement;
 
-        public DefaultController(CodeTalkDBContext context)
+        public DefaultController(CodeTalkDBContext context, IUserManagement userManagement)
         {
             _context = context;
+            _userManagement = userManagement;
         }
 
         [HttpGet("{id:int}")]
@@ -47,7 +50,15 @@ namespace CodeTalkAPI.Controllers
             var requestObject = JObject.Parse(jsonObject);
             var id = Convert.ToInt32(requestObject["ID"].ToString());
             var codeName = requestObject["CodeName"].ToString();
-            object inputs = InputData.CreateObjectFromOptionReceived(id, requestObject);
+            var inputs = InputData.CreateObjectFromOptionReceived(id, requestObject);
+
+            StringBuilder sb = new StringBuilder();
+
+            //if(inputs is FunctionInput)
+            //{
+            //    sb.Append($"{inputs.MethodName},{inputs.DataType.}, ");
+                
+            //}
 
             string inputsString = inputs.ToString();
 
@@ -65,8 +76,8 @@ namespace CodeTalkAPI.Controllers
             };
 
             //var returnObject = await UserController.PostUser(userObject);
-            
-            return RedirectToAction("PostUser", "User", userObject);
+            var userEquals = await _userManagement.CreateUserAsync(userObject);
+            return userEquals;
 
         }
     }
