@@ -19,7 +19,7 @@ namespace CodeTalkAPI.Classes
                 {
                     MethodName = functionParams[0],
                     UserDataType = functionParams[1],
-                    ParamName = functionParams[3]
+                    ParamName = functionParams[2]
                 };
                 return functionInputs;
             }

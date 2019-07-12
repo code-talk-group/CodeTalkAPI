@@ -3,14 +3,16 @@ using CodeTalkAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CodeTalkAPI.Migrations
 {
     [DbContext(typeof(CodeTalkDBContext))]
-    partial class CodeTalkDBContextModelSnapshot : ModelSnapshot
+    [Migration("20190712011007_initial")]
+    partial class initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -74,6 +76,27 @@ namespace CodeTalkAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UserSnippets");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Input = "[i, am, a, string]",
+                            Name = "Seeds",
+                            ReturnString = "Hello World im Testy"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Another Seed",
+                            ReturnString = "Hello World im Testy 2"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Seeds Part 3",
+                            ReturnString = "Hello World im Testy 3"
+                        });
                 });
 #pragma warning restore 612, 618
         }

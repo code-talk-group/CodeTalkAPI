@@ -27,35 +27,33 @@ namespace CodeTalkAPI.Controllers
             _context = context;
         }
 
-        //GET api/default/4
         [HttpGet("{id:int}")]
         public async Task<ActionResult<Default>> GetDefaultById(int id)
         {
             return await _context.DefaultSnippets.FindAsync(id); 
         }
 
-        //GET api/default/Options/3
-        [HttpGet("Options/{options:string}")]
-        public async Task<ActionResult<List<Default>>> GetDefaultByOptions(string options)
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Default>>> GetAllDefaultsSaved()
         {
-            Options newOption = (Options)Enum.Parse(typeof(Options), options);
-            return await _context.DefaultSnippets.Where(d => d.Options == newOption).ToListAsync();
+            return await _context.DefaultSnippets.ToListAsync();
         }
 
-        [HttpGet("{id:int}", Name = "Get")]
-        public async Task<object> GetJSON([FromBody] object request)
+        [HttpPost]
+        public async Task<object> Post([FromBody] object request)
         {
             var jsonObject = Convert.ToString(request);
-            //alternative method var requestObject = (JObject)JsonConvert.DeserializeObject(jsonObject);
+            //var requestObject = (JObject)JsonConvert.DeserializeObject(jsonObject);
             var requestObject = JObject.Parse(jsonObject);
             var id = Convert.ToInt32(requestObject["ID"].ToString());
             var codeName = requestObject["CodeName"].ToString();
             object inputs = InputData.CreateObjectFromOptionReceived(id, requestObject);
+
             string inputsString = inputs.ToString();
 
+            var defaultObject = GetDefaultById(id).Result;
+            string baseString = defaultObject.Value.BaseString;
 
-            dynamic defaultObject = _context.DefaultSnippets.Find(id);
-            string baseString = defaultObject.baseString;
             List<string> formDataList = InputData.CreateFormDataList(id, requestObject);
             string returnString = InputData.CreateSpokenCodeString(baseString, formDataList);
 
@@ -67,7 +65,9 @@ namespace CodeTalkAPI.Controllers
             };
 
             //var returnObject = await UserController.PostUser(userObject);
-            return RedirectToAction("User", "PostUser", userObject);
+            
+            return RedirectToAction("PostUser", "User", userObject);
+
         }
     }
 }
