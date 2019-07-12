@@ -54,13 +54,29 @@ namespace CodeTalkAPI.Controllers
 
             StringBuilder sb = new StringBuilder();
 
-            //if(inputs is FunctionInput)
-            //{
-            //    sb.Append($"{inputs.MethodName},{inputs.DataType.}, ");
-                
-            //}
+            if (inputs is FunctionInput)
+            {
+                FunctionInput test = (FunctionInput)inputs;
+                sb.Append($"{inputs.MethodName}, {test.DataType}, {test.ParameterName}");
+            } 
+            else if(inputs is ForLoopInput)
+            {
+                ForLoopInput test = (ForLoopInput)inputs;
+                sb.Append($"{inputs.MethodName}, {test.ArrayName}");
+            }
+            else if (inputs is IfStatementInput)
+            {
+                IfStatementInput test = (IfStatementInput)inputs;
+                sb.Append($"{inputs.MethodName}, {test.ParameterName}, {test.IntegerValue}");
+            }
+            else if (inputs is VariableInput)
+            {
+                VariableInput test = (VariableInput)inputs;
+                sb.Append($"{inputs.MethodName}, {test.DataType}, {test.VariableName}, {test.VariableValue}");
+            }
 
-            string inputsString = inputs.ToString();
+
+            string inputsString = sb.ToString();
 
             var defaultObject = GetDefaultById(id).Result;
             string baseString = defaultObject.Value.BaseString;
