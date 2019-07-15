@@ -12,18 +12,18 @@ namespace InputDataUnitTests
         [Fact]
         public void CanCreateObjectFromOptionReceivedForVariableOption()
         {
-            string stringOfObject = "{ \"ID\" : 4, \"CodeName\" : \"CName\", \"MethodName\" : \"IfStatement\", \"ParameterName\" : \"NameOfParameter\", \"IntegerValue\": \"ValueOfInteger\"}";
+            string stringOfObject = "{ \"ID\" : 4, \"CodeName\" : \"CName\", \"MethodName\" : \"Variable\", \"DataType\" : \"TypeOfData\", \"VariableName\": \"NameOfVariable\", \"VariableValue\": \"ValueOfVariable\"}";
             JObject testObject = JObject.Parse(stringOfObject);
 
-            IfStatementInput expectedObject = new IfStatementInput
+            VariableInput expectedObject = new VariableInput
             {
-                MethodName = "IfStatement",
-                ParameterName = "NameOfParament",
-                IntegerValue = "IntegerValue",
-                IntegerValue2 = "IntegerValue",
+                MethodName = "Variable",
+                DataType = "TypeOfData",
+                VariableName = "NameOfVariable",
+                VariableValue = "ValueOfVariable"
             };
 
-            IOptionType actualObject = InputData.CreateObjectFromOptionReceived(3, testObject);
+            IOptionType actualObject = InputData.CreateObjectFromOptionReceived(4, testObject);
 
             Assert.Equal(expectedObject.MethodName, actualObject.MethodName);
         }
