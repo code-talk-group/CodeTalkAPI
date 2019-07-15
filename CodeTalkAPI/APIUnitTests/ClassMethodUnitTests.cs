@@ -21,6 +21,16 @@ namespace ClassMethodUnitTests
 
         //    Assert.Equal(expectedResult, actualResult);
         //}
+        [Fact]
+        public void CanCreateSpokenCodeStringForForLoop()
+        {
+            string testBaseString = "_ is a public method which takes in an integer array called _ and returns an integer. A counter is declared and set to zero. A For Loop iterates through the array as long as i is less than the length of the array and adds 1 to the counter. When the loop is completed the counter is returned.";
+            List<string> testFormInputs = new List<string> { "MethodName", "ArrayName" };
+            string actualResult = InputData.CreateSpokenCodeString(testBaseString, testFormInputs);
+            string expectedResult = "MethodName is a public method which takes in an integer array called ArrayName and returns an integer. A counter is declared and set to zero. A For Loop iterates through the array as long as i is less than the length of the array and adds 1 to the counter. When the loop is completed the counter is returned.";
+
+            Assert.Equal(expectedResult, actualResult);
+        }
 
         [Fact]
         public void CanCreateSpokenCodeStringForFunction()
