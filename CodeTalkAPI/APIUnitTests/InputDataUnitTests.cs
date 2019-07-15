@@ -3,9 +3,9 @@ using Xunit;
 using System.Collections.Generic;
 using CodeTalkAPI.Classes;
 using System.Linq;
+using Newtonsoft.Json.Linq;
 
-
-namespace ClassMethodUnitTests
+namespace InputDataUnitTests
 {
     public class UnitTest1
     {
@@ -21,6 +21,18 @@ namespace ClassMethodUnitTests
 
         //    Assert.Equal(expectedResult, actualResult);
         //}
+
+        [Fact]
+        public void CanCreateFunctionParamsStringArray()
+        {
+            string stringOfObject = "{ \"ID\" : 4, \"CodeName\" : \"CName\", \"MethodName\" : \"NameOfMethod\", \"DataType\" : \"TestType\", \"ParameterName\": \"NameOfParameter\"}";
+            JObject testObject = JObject.Parse(stringOfObject);
+
+            string[] expectedStringArray = new string[3] { "NameOfMethod", "TestType", "NameOfParameter" };
+            string[] actualStringArray = InputData.CreateFunctionParams(testObject);
+
+            Assert.Equal(expectedStringArray, actualStringArray);
+        }
 
         [Fact]
         public void CanCreateSpokenCodeStringForVariable()
