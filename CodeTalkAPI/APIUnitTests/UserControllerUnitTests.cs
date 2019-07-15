@@ -14,7 +14,7 @@ namespace UserControllerUnitTests
 {
     public class UnitTest1
     {
-        [Fact]
+        //[Fact]
         public void CanCreateUserSnippetRecordWithPost()
         {
             var options = new DbContextOptionsBuilder<CodeTalkDBContext>()

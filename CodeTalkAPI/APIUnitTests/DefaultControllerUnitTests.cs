@@ -13,7 +13,7 @@ namespace DefaultControllerUnitTests
 {
     public class UnitTest1
     {
-        [Theory]
+        //[Theory]
         [InlineData(1)]
         [InlineData(2)]
         [InlineData(3)]
