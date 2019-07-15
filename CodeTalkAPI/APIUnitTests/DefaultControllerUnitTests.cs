@@ -13,30 +13,30 @@ namespace DefaultControllerUnitTests
 {
     public class UnitTest1
     {
-        //[Theory]
-        [InlineData(1)]
-        [InlineData(2)]
-        [InlineData(3)]
-        [InlineData(4)]
-        public void CanGetDefaultById(int id)
-        {
-            var options = new DbContextOptionsBuilder<CodeTalkDBContext>()
-                .Options;
+        ////[Theory]
+        //[InlineData(1)]
+        //[InlineData(2)]
+        //[InlineData(3)]
+        //[InlineData(4)]
+        //public void CanGetDefaultById(int id)
+        //{
+        //    var options = new DbContextOptionsBuilder<CodeTalkDBContext>()
+        //        .Options;
 
-            var builder = new ConfigurationBuilder().AddEnvironmentVariables();
-            builder.AddUserSecrets<Startup>();
-            var configuration = builder.Build();
+        //    var builder = new ConfigurationBuilder().AddEnvironmentVariables();
+        //    builder.AddUserSecrets<Startup>();
+        //    var configuration = builder.Build();
 
-            using (var context = new CodeTalkDBContext(options))
-            {
-                var controller = new DefaultController(context, configuration);
+        //    using (var context = new CodeTalkDBContext(options))
+        //    {
+        //        var controller = new DefaultController(context, configuration);
 
-                var actualOption = controller.GetDefaultById(id);
+        //        var actualOption = controller.GetDefaultById(id);
 
-                Assert.Equal(id, actualOption.Id);
-            }
+        //        Assert.Equal(id, actualOption.Id);
+        //    }
 
-        }
+        //}
 
 
     }
