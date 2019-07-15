@@ -21,6 +21,18 @@ namespace ClassMethodUnitTests
 
         //    Assert.Equal(expectedResult, actualResult);
         //}
+
+        [Fact]
+        public void CanCreateSpokenCodeStringForIfStatement()
+        {
+            string testBaseString = "_ is a public method with a void return type that takes in an integer named _. The integer's value is then set to _. Our if statement determines if _ is less than 10. If this is true, Yes is printed to the console. If this is not true, our else statement will print No to the console.";
+            List<string> testFormInputs = new List<string> { "MethodName", "Parameter", "IntegerValue", "IntegerValue2" };
+            string actualResult = InputData.CreateSpokenCodeString(testBaseString, testFormInputs);
+            string expectedResult = "MethodName is a public method with a void return type that takes in an integer named Parameter. The integer's value is then set to IntegerValue. Our if statement determines if IntegerValue2 is less than 10. If this is true, Yes is printed to the console. If this is not true, our else statement will print No to the console.";
+
+            Assert.Equal(expectedResult, actualResult);
+        }
+
         [Fact]
         public void CanCreateSpokenCodeStringForForLoop()
         {
