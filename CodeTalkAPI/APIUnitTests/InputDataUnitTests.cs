@@ -23,6 +23,18 @@ namespace InputDataUnitTests
         //}
 
         [Fact]
+        public void CanCreateForLoopParamsStringArray()
+        {
+            string stringOfObject = "{ \"ID\" : 4, \"CodeName\" : \"CName\", \"MethodName\" : \"NameOfMethod\",\"ArrayName\": \"NameOfArray\"}";
+            JObject testObject = JObject.Parse(stringOfObject);
+
+            string[] expectedStringArray = new string[2] { "NameOfMethod", "NameOfArray" };
+            string[] actualStringArray = InputData.CreateForLoopParams(testObject);
+
+            Assert.Equal(expectedStringArray, actualStringArray);
+        }
+
+        [Fact]
         public void CanCreateFunctionParamsStringArray()
         {
             string stringOfObject = "{ \"ID\" : 4, \"CodeName\" : \"CName\", \"MethodName\" : \"NameOfMethod\", \"DataType\" : \"TestType\", \"ParameterName\": \"NameOfParameter\"}";
