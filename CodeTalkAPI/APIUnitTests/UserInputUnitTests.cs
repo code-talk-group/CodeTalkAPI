@@ -5,7 +5,7 @@ using System.Text;
 using CodeTalkAPI.Models;
 using CodeTalkAPI.Classes;
 
-namespace IOptionTypeUnitTests
+namespace UserInputUnitTests
 {
     public class UnitTests
     {
