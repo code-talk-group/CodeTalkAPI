@@ -10,6 +10,44 @@ namespace InputDataUnitTests
     public class UnitTest1
     {
         [Fact]
+        public void CanCreateObjectFromOptionReceivedForVariableOption()
+        {
+            string stringOfObject = "{ \"ID\" : 4, \"CodeName\" : \"CName\", \"MethodName\" : \"IfStatement\", \"ParameterName\" : \"NameOfParameter\", \"IntegerValue\": \"ValueOfInteger\"}";
+            JObject testObject = JObject.Parse(stringOfObject);
+
+            IfStatementInput expectedObject = new IfStatementInput
+            {
+                MethodName = "IfStatement",
+                ParameterName = "NameOfParament",
+                IntegerValue = "IntegerValue",
+                IntegerValue2 = "IntegerValue",
+            };
+
+            IOptionType actualObject = InputData.CreateObjectFromOptionReceived(3, testObject);
+
+            Assert.Equal(expectedObject.MethodName, actualObject.MethodName);
+        }
+
+        [Fact]
+        public void CanCreateObjectFromOptionReceivedForIfStatementOption()
+        {
+            string stringOfObject = "{ \"ID\" : 4, \"CodeName\" : \"CName\", \"MethodName\" : \"IfStatement\", \"ParameterName\" : \"NameOfParameter\", \"IntegerValue\": \"ValueOfInteger\"}";
+            JObject testObject = JObject.Parse(stringOfObject);
+
+            IfStatementInput expectedObject = new IfStatementInput
+            {
+                MethodName = "IfStatement",
+                ParameterName = "NameOfParament",
+                IntegerValue = "IntegerValue",
+                IntegerValue2 = "IntegerValue",
+            };
+
+            IOptionType actualObject = InputData.CreateObjectFromOptionReceived(3, testObject);
+
+            Assert.Equal(expectedObject.MethodName, actualObject.MethodName);
+        }
+
+        [Fact]
         public void CanCreateObjectFromOptionReceivedForForLoopOption()
         {
             string stringOfObject = "{ \"ID\" : 4, \"CodeName\" : \"CName\", \"MethodName\" : \"ForLoop\",\"ArrayName\": \"NameOfArray\"}";
