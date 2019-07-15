@@ -1,4 +1,6 @@
 ### CodeTalk Backend
+## API
+	https://codetalkapi.azurewebsites.net/
 
 ### Swagger Documentation
 	https://app.swaggerhub.com/apis-docs/Richard0923/CodeTalkAPI/0.1
