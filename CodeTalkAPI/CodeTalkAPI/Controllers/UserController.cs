@@ -19,7 +19,7 @@ namespace CodeTalkAPI.Controllers
         /// Setting user controller's context
         /// </summary>
         /// <param name="context">The table/data from the database being used for this controller</param>
-        public UserController(CodeTalkDBContext context)
+        public UserController(CodeTalkDBContext context, object configuration)
         {
             _context = context;
         }
