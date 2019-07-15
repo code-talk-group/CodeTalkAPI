@@ -21,6 +21,31 @@ namespace InputDataUnitTests
 
         //    Assert.Equal(expectedResult, actualResult);
         //}
+
+        [Fact]
+        public void CanCreateFormDataListForForLoop()
+        {
+            string stringOfObject = "{ \"ID\" : 4, \"CodeName\" : \"CName\", \"MethodName\" : \"NameOfMethod\",\"ArrayName\": \"NameOfArray\"}";
+            JObject testObject = JObject.Parse(stringOfObject);
+
+            List<string> expectedStringList = new List<string>(new string[] { "NameOfMethod", "NameOfArray" });
+            List<string> actualStringList = InputData.CreateFormDataList(1, testObject);
+
+            Assert.Equal(expectedStringList, actualStringList);
+        }
+
+        [Fact]
+        public void CanCreateFormDataListForFunction()
+        {
+            string stringOfObject = "{ \"ID\" : 4, \"CodeName\" : \"CName\", \"MethodName\" : \"NameOfMethod\", \"DataType\" : \"TestType\", \"ParameterName\": \"NameOfParameter\"}";
+            JObject testObject = JObject.Parse(stringOfObject);
+
+            List<string> expectedStringList = new List<string>(new string[] { "NameOfMethod", "TestType", "NameOfParameter" });
+            List<string> actualStringList = InputData.CreateFormDataList(1, testObject);
+
+            Assert.Equal(expectedStringList, actualStringList);
+        }
+
         [Fact]
         public void CanCreateVariableParamsStringArray()
         {
