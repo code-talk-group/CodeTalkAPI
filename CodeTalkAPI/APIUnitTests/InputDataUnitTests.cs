@@ -29,7 +29,7 @@ namespace InputDataUnitTests
             JObject testObject = JObject.Parse(stringOfObject);
 
             List<string> expectedStringList = new List<string>(new string[] { "NameOfMethod", "NameOfArray" });
-            List<string> actualStringList = InputData.CreateFormDataList(1, testObject);
+            List<string> actualStringList = InputData.CreateFormDataList(2, testObject);
 
             Assert.Equal(expectedStringList, actualStringList);
         }
