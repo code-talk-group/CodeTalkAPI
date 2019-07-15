@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CodeTalkAPI.Migrations
 {
-    public partial class amandaupdate : Migration
+    public partial class richardupdate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

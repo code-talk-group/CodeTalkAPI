@@ -1,4 +1,9 @@
-##CodeTalk Backend
+### CodeTalk Backend
+## API
+	https://codetalkapi.azurewebsites.net/
+
+### Swagger Documentation
+	https://app.swaggerhub.com/apis-docs/Richard0923/CodeTalkAPI/0.1
 
 ### 1. Database
 As a Developer I want a database that stores records of spoken code strings for the corresponding options presented to the user on the Client side.
@@ -37,4 +42,4 @@ As a developer I want the user to be able to edit their previously created spoke
 3. Updates the customized spoken code snippet to what the user entered on the Client side and saves the changes to that record.
 
 ## Database Schema 
-![screenshot](/Assets/CodeTalkDB.jpg)
+![screenshot](/Assets/CodeTalkAPI.jpg)

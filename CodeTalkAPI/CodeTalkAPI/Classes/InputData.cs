@@ -10,6 +10,12 @@ namespace CodeTalkAPI.Classes
 {
     public class InputData
     {
+        /// <summary>
+        /// Creates a IOptionType with the JSON object recieved determines the IOption tyoe by the id given.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="requestObject"></param>
+        /// <returns>Returns an IOptionType </returns>
         public static IOptionType CreateObjectFromOptionReceived(int id, JObject requestObject)
         {
             if(id == 1)
@@ -63,6 +69,11 @@ namespace CodeTalkAPI.Classes
             }
         }
 
+        /// <summary>
+        /// Takes in a JSON object an sets the parameters needed for the IOptionType of FunctionInput. 
+        /// </summary>
+        /// <param name="requestObject"></param>
+        /// <returns>Returns an Array of strings</returns>
         public static string[] CreateFunctionParams(JObject requestObject)
         {
             string methodName = requestObject["MethodName"].Value<string>();
@@ -73,6 +84,11 @@ namespace CodeTalkAPI.Classes
             return functionParams;
         }
 
+        /// <summary>
+        /// Takes in a JSON object an sets the parameters needed for the IOptionType of ForLoopInput. 
+        /// </summary>
+        /// <param name="requestObject"></param>
+        /// <returns>Returns an Array of strings</returns>
         public static string[] CreateForLoopParams(JObject requestObject)
         {
             string methodName = requestObject["MethodName"].Value<string>();
@@ -82,6 +98,11 @@ namespace CodeTalkAPI.Classes
             return forLoopParams;
         }
 
+        /// <summary>
+        /// Takes in a JSON object an sets the parameters needed for the IOptionType of IfStatementInput.
+        /// </summary>
+        /// <param name="requestObject"></param>
+        /// <returns>Returns an Array of strings</returns>
         public static string[] CreateIfStatementParams(JObject requestObject)
         {
             string methodName = requestObject["MethodName"].Value<string>();
@@ -92,6 +113,11 @@ namespace CodeTalkAPI.Classes
             return ifStatementParams;
         }
 
+        /// <summary>
+        /// Takes in a JSON object an sets the parameters needed for the IOptionType of VariableInput.
+        /// </summary>
+        /// <param name="requestObject"></param>
+        /// <returns>Returns an Array of strings</returns>
         public static string[] CreateVariableParams(JObject requestObject)
         {
             string methodName = requestObject["MethodName"].Value<string>();
@@ -103,6 +129,12 @@ namespace CodeTalkAPI.Classes
             return variableParams;
         }
 
+        /// <summary>
+        /// Creates a list and adds all the inputs for the base string from the JSON  object
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="requestObject"></param>
+        /// <returns>Returns a List of strings </returns>
         public static List<string> CreateFormDataList(int id, JObject requestObject)
         {
             List<string> formDataList = new List<string>();
@@ -143,6 +175,12 @@ namespace CodeTalkAPI.Classes
             return formDataList;
         }
 
+        /// <summary>
+        /// Replaces all the "_" in the basestring given with the values of the forminputs List.
+        /// </summary>
+        /// <param name="baseString"></param>
+        /// <param name="formInputs"></param>
+        /// <returns>Returns the modified version of baseString</returns>
         public static string CreateSpokenCodeString(string baseString, List<string> formInputs)
         {
             string spokenCodeString = baseString;
@@ -155,6 +193,13 @@ namespace CodeTalkAPI.Classes
             return spokenCodeString;
         }
 
+        /// <summary>
+        /// Replaces every occurence of the toBeReplaced Characters inside the the original string with the replacement string  
+        /// </summary>
+        /// <param name="originalString"></param>
+        /// <param name="toBeReplaced"></param>
+        /// <param name="replacement"></param>
+        /// <returns>Returns a new string</returns>
         public static string ReplaceFirstOccurence(string originalString, string toBeReplaced, string replacement)
         {
             int occurence = originalString.IndexOf(toBeReplaced);

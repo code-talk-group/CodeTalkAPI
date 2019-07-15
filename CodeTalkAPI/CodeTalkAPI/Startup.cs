@@ -23,6 +23,7 @@ namespace CodeTalkAPI
         public IConfiguration Configuration { get; }
         public IHostingEnvironment Environment { get; }
 
+        // This method allows us to use Eviromental variables
         public Startup(IHostingEnvironment environment)
         {
             Environment = environment;

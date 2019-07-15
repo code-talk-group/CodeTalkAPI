@@ -13,7 +13,7 @@ namespace CodeTalkAPI.Data
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //Seeded data 
+            //Seeded data for the DefaultSnippets Table
             modelBuilder.Entity<Default>().HasData(
                 new Default
                 {
@@ -42,6 +42,7 @@ namespace CodeTalkAPI.Data
                 );
         }
 
+        //Database Tables 
         public DbSet<Default> DefaultSnippets { get; set; }
 
         public DbSet<User> UserSnippets { get; set; }

@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CodeTalkAPI.Migrations
 {
     [DbContext(typeof(CodeTalkDBContext))]
-    [Migration("20190712163601_amandaupdate")]
-    partial class amandaupdate
+    [Migration("20190712174454_richardupdate")]
+    partial class richardupdate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
