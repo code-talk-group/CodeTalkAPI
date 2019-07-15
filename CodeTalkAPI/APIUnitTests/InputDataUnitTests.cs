@@ -22,6 +22,19 @@ namespace InputDataUnitTests
         //    Assert.Equal(expectedResult, actualResult);
         //}
 
+
+        [Fact]
+        public void CanCreateIfStatementParamsStringArray()
+        {
+            string stringOfObject = "{ \"ID\" : 4, \"CodeName\" : \"CName\", \"MethodName\" : \"NameOfMethod\", \"ParameterName\" : \"NameOfParameter\", \"IntegerValue\": \"ValueOfInteger\"}";
+            JObject testObject = JObject.Parse(stringOfObject);
+
+            string[] expectedStringArray = new string[4] { "NameOfMethod", "NameOfParameter", "ValueOfInteger", "ValueOfInteger" };
+            string[] actualStringArray = InputData.CreateIfStatementParams(testObject);
+
+            Assert.Equal(expectedStringArray, actualStringArray);
+        }
+
         [Fact]
         public void CanCreateForLoopParamsStringArray()
         {
