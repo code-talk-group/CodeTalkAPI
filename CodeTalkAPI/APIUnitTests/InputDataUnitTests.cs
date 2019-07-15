@@ -21,7 +21,17 @@ namespace InputDataUnitTests
 
         //    Assert.Equal(expectedResult, actualResult);
         //}
+        [Fact]
+        public void CanCreateVariableParamsStringArray()
+        {
+            string stringOfObject = "{ \"ID\" : 4, \"CodeName\" : \"CName\", \"MethodName\" : \"NameOfMethod\", \"DataType\" : \"TypeOfData\", \"VariableName\": \"NameOfVariable\", \"VariableValue\": \"ValueOfVariable\"}";
+            JObject testObject = JObject.Parse(stringOfObject);
 
+            string[] expectedStringArray = new string[4] { "NameOfMethod", "TypeOfData", "NameOfVariable", "ValueOfVariable" };
+            string[] actualStringArray = InputData.CreateVariableParams(testObject);
+
+            Assert.Equal(expectedStringArray, actualStringArray);
+        }
 
         [Fact]
         public void CanCreateIfStatementParamsStringArray()
