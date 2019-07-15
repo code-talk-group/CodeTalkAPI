@@ -64,7 +64,7 @@ namespace CodeTalkAPI.Classes
             public string UserInt { get; set; }
 
             /// <summary>
-            /// Creates a If Statment Input object
+            /// Creates a If Statement Input object
             /// </summary>
             /// <param name="methodName"></param>
             /// <param name="pName"></param>
