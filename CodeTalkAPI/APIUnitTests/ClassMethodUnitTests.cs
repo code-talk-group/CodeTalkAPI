@@ -12,7 +12,7 @@ namespace ClassMethodUnitTests
         //[Fact]
         //public void CanCreateFormDataList()
         //{
-        //    string testString = "["MethodName:Test\", \"DataType:int\", \"Parameter:testPara\"";
+        //    string testString = ["MethodName: Test", "DataType:int", "Parameter:testPara"];
         //    List<string> testFormInputs = new List<string> { "Test", "int", "testPara" };
         //    List<string> actualList = InputData.CreateFormDataList(testString);
 
@@ -23,18 +23,31 @@ namespace ClassMethodUnitTests
         //}
 
         [Fact]
-        public void CanCreateSpokenCodeString()
+        public void CanCreateSpokenCodeStringForFunction()
         {
-            string testBaseString = "_ is a public method with a void return type that takes in a _ called _. When the method is called all the statements and arguments defined within the curly braces will run.";
+            string testBaseString = "_ is a public method with a void return type that takes in a  _ called _. When the method is called all the statements and arguments defined within the curly braces will run.";
             List<string> testFormInputs = new List<string> { "MethodName", "DataType", "Parameter" };
             string actualResult = InputData.CreateSpokenCodeString(testBaseString, testFormInputs);
-            string expectedResult = "MethodName is a public method with a void return type that takes in a DataType called Parameter. When the method is called all the statements and arguments defined within the curly braces will run.";
+            string expectedResult = "MethodName is a public method with a void return type that takes in a  DataType called Parameter. When the method is called all the statements and arguments defined within the curly braces will run.";
 
             Assert.Equal(expectedResult, actualResult);
         }
 
         [Fact]
         public void CanReplaceFirstOccurence()
+        {
+            string testString = "Hello _, welcome to this test";
+            string testToBeReplace = "_";
+            string testReplacement = "name";
+            string expectedResult = "Hello name, welcome to this test";
+
+            string actualResult = InputData.ReplaceFirstOccurence(testString, testToBeReplace, testReplacement);
+
+            Assert.Equal(expectedResult, actualResult);
+        }
+
+        [Fact]
+        public void ReplacesOnlyFirstOccurenceAndNoneOfTheOccurencesAfter()
         {
             string testString = "Hello _, _ to this _";
             string testToBeReplace = "_";

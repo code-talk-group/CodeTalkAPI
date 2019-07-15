@@ -24,12 +24,22 @@ namespace CodeTalkAPI.Controllers
         private CodeTalkDBContext _context;
         private IUserManagement _userManagement;
 
+        /// <summary>
+        /// Setting default controller's database context and used interface
+        /// </summary>
+        /// <param name="context">The data from the database used in this controller</param>
+        /// <param name="userManagement">The interface being used to fill out user objects</param>
         public DefaultController(CodeTalkDBContext context, IUserManagement userManagement)
         {
             _context = context;
             _userManagement = userManagement;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id:int}")]
         public async Task<ActionResult<Default>> GetDefaultById(int id)
         {
