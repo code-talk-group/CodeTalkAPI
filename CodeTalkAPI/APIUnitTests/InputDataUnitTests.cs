@@ -23,6 +23,18 @@ namespace InputDataUnitTests
         //}
 
         [Fact]
+        public void CanCreateFormDataListForVariable()
+        {
+            string stringOfObject = "{ \"ID\" : 4, \"CodeName\" : \"CName\", \"MethodName\" : \"NameOfMethod\", \"DataType\" : \"TypeOfData\", \"VariableName\": \"NameOfVariable\", \"VariableValue\": \"ValueOfVariable\"}";
+            JObject testObject = JObject.Parse(stringOfObject);
+
+            List<string> expectedStringList = new List<string>(new string[] { "NameOfMethod", "TypeOfData", "NameOfVariable", "ValueOfVariable" });
+            List<string> actualStringList = InputData.CreateFormDataList(4, testObject);
+
+            Assert.Equal(expectedStringList, actualStringList);
+        }
+
+        [Fact]
         public void CanCreateFormDataListForIfStatement()
         {
             string stringOfObject = "{ \"ID\" : 4, \"CodeName\" : \"CName\", \"MethodName\" : \"NameOfMethod\", \"ParameterName\" : \"NameOfParameter\", \"IntegerValue\": \"ValueOfInteger\"}";
