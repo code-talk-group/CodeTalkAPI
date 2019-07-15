@@ -10,14 +10,31 @@ namespace InputDataUnitTests
     public class UnitTest1
     {
         [Fact]
+        public void CanCreateObjectFromOptionReceivedForForLoopOption()
+        {
+            string stringOfObject = "{ \"ID\" : 4, \"CodeName\" : \"CName\", \"MethodName\" : \"ForLoop\",\"ArrayName\": \"NameOfArray\"}";
+            JObject testObject = JObject.Parse(stringOfObject);
+
+            ForLoopInput expectedObject = new ForLoopInput
+            {
+                MethodName = "ForLoop",
+                ArrayName = "NameOfArray",
+            };
+
+            IOptionType actualObject = InputData.CreateObjectFromOptionReceived(2, testObject);
+
+            Assert.Equal(expectedObject.MethodName, actualObject.MethodName);
+        }
+
+        [Fact]
         public void CanCreateObjectFromOptionReceivedForFunctionOption()
         {
-            string stringOfObject = "{ \"ID\" : 4, \"CodeName\" : \"CName\", \"MethodName\" : \"NameOfMethod\", \"DataType\" : \"TestType\", \"ParameterName\": \"NameOfParameter\"}";
+            string stringOfObject = "{ \"ID\" : 4, \"CodeName\" : \"CName\", \"MethodName\" : \"Function\", \"DataType\" : \"TestType\", \"ParameterName\": \"NameOfParameter\"}";
             JObject testObject = JObject.Parse(stringOfObject);
 
             FunctionInput expectedObject = new FunctionInput()
             { 
-                MethodName = "NameOfMethod",
+                MethodName = "Function",
                 DataType = "TestType",
                 ParameterName = "NameOfParameter"
             };
