@@ -27,7 +27,7 @@ namespace CodeTalkAPI.Controllers
         /// <summary>
         /// Setting default controller's database context and used interface
         /// </summary>
-        /// <param name="context">The data from the database used in this controller</param>
+        /// <param name="context">The table/data from the database used in this controller</param>
         /// <param name="userManagement">The interface being used to fill out user objects</param>
         public DefaultController(CodeTalkDBContext context, IUserManagement userManagement)
         {
