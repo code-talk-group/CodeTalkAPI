@@ -13,23 +13,21 @@ namespace DefaultControllerUnitTests
 {
     public class UnitTest1
     {
-        ////[Theory]
+        //There is no create method for the default snippets table
+        //[Theory]
         //[InlineData(1)]
         //[InlineData(2)]
         //[InlineData(3)]
         //[InlineData(4)]
         //public void CanGetDefaultById(int id)
         //{
-        //    var options = new DbContextOptionsBuilder<CodeTalkDBContext>()
+        //    DbContextOptions<CodeTalkDBContext> options = new DbContextOptionsBuilder<CodeTalkDBContext>()
+        //        .UseInMemoryDatabase("CreateDefault")
         //        .Options;
-
-        //    var builder = new ConfigurationBuilder().AddEnvironmentVariables();
-        //    builder.AddUserSecrets<Startup>();
-        //    var configuration = builder.Build();
 
         //    using (var context = new CodeTalkDBContext(options))
         //    {
-        //        var controller = new DefaultController(context, configuration);
+        //        var controller = new DefaultController(context, options);
 
         //        var actualOption = controller.GetDefaultById(id);
 
@@ -37,7 +35,5 @@ namespace DefaultControllerUnitTests
         //    }
 
         //}
-
-
     }
 }
