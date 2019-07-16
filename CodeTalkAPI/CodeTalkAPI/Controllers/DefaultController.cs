@@ -96,8 +96,6 @@ namespace CodeTalkAPI.Controllers
                 sb.Append($"{inputs.MethodName}, {test.DataType}, {test.VariableName}, {test.VariableValue}");
             }
 
-
-
             string inputsString = sb.ToString();
 
             //Retrieve correct option record from default snippet's table and capturing appropriate base string to use
